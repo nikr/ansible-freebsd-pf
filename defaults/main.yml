@@ -1,0 +1,3 @@
+pf_ext_if: vtnet0
+pf_open_ports:
+  - ssh
