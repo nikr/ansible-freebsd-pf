@@ -1,2 +1,8 @@
-- name: reload pf
-  service: name=pf state=reloaded
+- name: unload PF service
+  command: launchctl unload /Library/LaunchDaemons/pf.plist
+  become: yes
+
+- name: load PF service
+  command: launchctl load /Library/LaunchDaemons/pf.plist
+  become: yes
+  

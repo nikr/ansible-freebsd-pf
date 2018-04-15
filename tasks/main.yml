@@ -3,15 +3,12 @@
     src: pf.conf.j2
     dest: /etc/pf.conf
     validate: 'pfctl -n -f %s'
-  notify: reload pf
+  become: yes
 
-- name: enable pf on boot
-  service: name=pf state=started enabled=yes
-  # perform this without waiting for the response because PF will drop the
-  # SSH connection if its service is not running
-  async: 0
-  poll: 0
-  ignore_errors: true
-
-- name: make sure pf is started
-  service: name=pf state=started
+- name: copy pf service config
+  copy: 
+    src: pf.plist
+    dest: /Library/LaunchDaemons/pf.plist
+  notify:
+    - unload PF service
+    - load PF service
