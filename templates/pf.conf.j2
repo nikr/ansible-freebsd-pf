@@ -13,6 +13,8 @@ set skip on lo0
 scrub in on $ext_if all fragment reassemble
 
 # filtering
+# block everything by default
+block return in all
 # enable protection against address spoofing
 antispoof for $ext_if
 # allow outbound traffic
@@ -21,7 +23,5 @@ pass out all modulate state
 pass in quick on $ext_if proto icmp
 # allow inbound traffic for some services
 {% for port in pf_open_ports %}
-pass in quick on $ext_if proto tcp to port {{ port }} synproxy state
+pass in quick on $ext_if proto tcp to port {{ port }} 
 {% endfor %}
-# block everything by default
-block return in all
