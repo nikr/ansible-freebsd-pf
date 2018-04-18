@@ -9,6 +9,7 @@
   copy: 
     src: pf.plist
     dest: /Library/LaunchDaemons/pf.plist
+  become: yes
   notify:
     - unload PF service
     - load PF service

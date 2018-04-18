@@ -3,15 +3,14 @@
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>com.pf.plist</string>
+    <string>pf.plist</string>
     <key>Program</key>
     <string>/sbin/pfctl</string>
     <key>ProgramArguments</key>
     <array>
-      <string>/sbin/pfctl</string>
       <string>-e</string>
       <string>-f</string>
-      <string>/etc/pf.config</string>
+      <string>/etc/pf.conf</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
